@@ -2,7 +2,8 @@
 // 배진우 - 현명한 보험 개인 페이지 전용
 // 이메일(배진우 개인만) + 텔레그램 + 구글시트 연동
 // 공용 스크립트(메타리치 시그널그룹)에서 분리한 버전
-// 시트는 기존과 동일한 문서에 계속 저장됨
+// 시트도 공용 "공통 접수건"이 아닌, 이 프로젝트에 바인딩된
+// 개인 시트("현명한보험 개인 접수건")에 저장됨
 // ================================================
 //
 // 적용 방법 (이미 만든 프로젝트 "배진우 현명한보험 개인"):
@@ -10,11 +11,10 @@
 // 2. 저장
 // 3. 배포 → 배포 관리 → 편집(연필) → 버전: 새 버전 → 배포
 //    (URL은 그대로 유지되므로 main.js는 다시 수정할 필요 없음)
-// 4. 스크립트 실행 계정이 아래 SPREADSHEET_ID 문서에 편집 권한이 있는지 확인
-//    (없으면 saveToSheet에서 권한 오류 발생)
+// 4. 프로젝트 실행 권한 승인(testAuth 등 실행 후 계정 승인) 완료 필요
 
 const EMAIL_TO = 'jinwoo8506@gmail.com';
-const SPREADSHEET_ID = '1jg5RBw4K7-HGnyB3836cSW5cLZau4GBusdk0MbdtTAQ';
+const SPREADSHEET_ID = '1ad0oB28CHDSxhzmG1LkyE75zvczp8K7b9fjPnOogPGc';
 
 const TELEGRAM_TOKEN = '8652544241:AAEiwI3_qEnPGmgc8YluREw-LAjNBnXXaNo';
 const TELEGRAM_CHAT_ID = '8712434989';
