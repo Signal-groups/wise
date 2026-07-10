@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>보험 상담 | 현명한 보험</title>
+  <meta name="description" content="내 보장을 간단히 체크하고 꼭 준비해야 할 보장 방향을 확인하는 보험 상담 페이지입니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="compass-mark"></span><span>현명한 보험</span></a>
+    <nav class="nav"><a href="insurance.html">보험 상담</a><a href="recruit.html">입사 문의</a><a href="lecture.html">강의</a><a href="program.html">프로그램 문의</a></nav>
+    <div class="header-actions"><a class="pill" href="https://metarich-signal.vercel.app/login" target="_blank" rel="noopener">프로그램 연결</a><a class="pill dark" href="https://signalgroup-sigma.vercel.app/index.html" target="_blank" rel="noopener">시그널그룹</a></div>
+  </header>
+
+  <main class="sub-page">
+    <section class="page-hero">
+      <p class="eyebrow">INSURANCE CHECK</p>
+      <h1>내 보장,<br>꼭 필요한 부분만 먼저 확인하세요.</h1>
+      <p class="lead">아래 항목을 선택하면 준비해야 할 핵심 내용을 간단히 확인할 수 있습니다.</p>
+    </section>
+
+    <section class="form-layout">
+      <div class="panel">
+        <h2>내 보장 체크</h2>
+        <p class="muted">궁금한 보장을 선택해 주세요. 여러 개 선택할 수 있습니다.</p>
+        <div class="check-grid coverage-options">
+          <label><input type="checkbox" name="coverage" value="암 보장"><span>암 보장</span></label>
+          <label><input type="checkbox" name="coverage" value="뇌·심장 보장"><span>뇌·심장 보장</span></label>
+          <label><input type="checkbox" name="coverage" value="실손의료비"><span>실손의료비</span></label>
+          <label><input type="checkbox" name="coverage" value="수술비"><span>수술비</span></label>
+          <label><input type="checkbox" name="coverage" value="입원비"><span>입원비</span></label>
+          <label><input type="checkbox" name="coverage" value="운전자보험"><span>운전자보험</span></label>
+          <label><input type="checkbox" name="coverage" value="어린이보험"><span>어린이보험</span></label>
+          <label><input type="checkbox" name="coverage" value="보험금 청구"><span>보험금 청구</span></label>
+          <label><input type="checkbox" name="coverage" value="기존 보험 점검"><span>기존 보험 점검</span></label>
+        </div>
+        <div class="comment-box" id="coverageComment">
+          <strong>선택한 보장에 따라 핵심 체크 포인트가 표시됩니다.</strong>
+          <ul><li>현재 가입 내역, 보장 범위, 보험료 부담을 함께 확인하는 것이 좋습니다.</li></ul>
+        </div>
+      </div>
+
+      <form class="panel lead-form" data-form-type="보험 상담">
+        <h2>상담 신청</h2>
+        <p class="muted">이름과 연락처만 남겨주시면 직접 연락드리겠습니다.</p>
+        <label>이름<input name="name" autocomplete="name" required placeholder="이름"></label>
+        <label>연락처<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="010-0000-0000"></label>
+        <label class="agree"><input type="checkbox" name="privacy" required><span>상담 신청을 위해 이름과 연락처를 수집하며, 상담 목적 외에는 사용하지 않습니다.</span></label>
+        <button class="btn primary full" type="submit">상담 신청하기</button>
+        <p class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="channel-band compact">
+      <a href="tel:01034302565">전화 상담</a>
+      <a href="https://open.kakao.com/o/s4lMEawg" target="_blank" rel="noopener">카카오톡 문의</a>
+      <a href="https://blog.naver.com/jinwoo8506" data-mobile-href="https://m.blog.naver.com/jinwoo8506" target="_blank" rel="noopener">블로그</a>
+      <a href="https://cafe.naver.com/signal1035" data-mobile-href="https://m.cafe.naver.com/signal1035" target="_blank" rel="noopener">보험의 기준 카페</a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><strong>현명한 보험</strong><span>배진우 · 메타리치 시그널그룹</span></footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
