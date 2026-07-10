@@ -1,5 +1,5 @@
 const CONFIG = {
-  googleAppsScriptUrl: "https://script.google.com/macros/s/AKfycbxfG3_3-BShzdr9x1dqZW9Pnh0bF4h54pGWH4s8A6yBXlMC_RnLcNtlmQt6IS7ECloX/exec"
+  googleAppsScriptUrl: "https://script.google.com/macros/s/AKfycbx_acqxXYQmUY9n-TgsVYBXscE0o3iq4VGQh1dC7opSAqhtbJZhCdy8kRYFqZB_-T8Now/exec"
 };
 
 const introLoader = document.getElementById("introLoader");
@@ -179,7 +179,6 @@ async function submitLead(form) {
     coverage: coverage.join(", "),
     privacyConsent: privacy ? "Y" : "N",
     source: "현명한 보험 개인 브랜딩 홈페이지",
-    extra_email: "jw20371035@gmail.com, jinwoo8506@gmail.com, kye1004s7@gmail.com",
     telegramTitle: `[현명한 보험] ${pageName} 신청`,
     ...utm()
   };
