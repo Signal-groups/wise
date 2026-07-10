@@ -2,6 +2,27 @@ const CONFIG = {
   googleAppsScriptUrl: "https://script.google.com/macros/s/AKfycbxfG3_3-BShzdr9x1dqZW9Pnh0bF4h54pGWH4s8A6yBXlMC_RnLcNtlmQt6IS7ECloX/exec"
 };
 
+const introLoader = document.getElementById("introLoader");
+if (introLoader) {
+  const introKey = "wiseInsuranceIntroPlayed";
+  const alreadyPlayed = sessionStorage.getItem(introKey) === "Y";
+  if (alreadyPlayed) {
+    introLoader.classList.add("hide");
+  } else {
+    document.body.classList.add("intro-active");
+    window.addEventListener("load", () => {
+      window.setTimeout(() => {
+        introLoader.classList.add("split");
+        document.body.classList.remove("intro-active");
+      }, 3050);
+      window.setTimeout(() => {
+        introLoader.classList.add("hide");
+        sessionStorage.setItem(introKey, "Y");
+      }, 3800);
+    });
+  }
+}
+
 const isMobile = window.matchMedia("(max-width: 768px)").matches || /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
 document.querySelectorAll("[data-mobile-href]").forEach((link) => {
