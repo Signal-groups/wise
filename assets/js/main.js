@@ -12,7 +12,7 @@ if (introLoader) {
     document.body.classList.add("intro-active");
     window.addEventListener("load", () => {
       window.setTimeout(() => {
-        introLoader.classList.add("split");
+        introLoader.classList.add("bright");
         document.body.classList.remove("intro-active");
       }, 3050);
       window.setTimeout(() => {
