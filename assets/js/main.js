@@ -85,6 +85,24 @@ function utm() {
   };
 }
 
+function currentPageName(formType) {
+  const path = location.pathname.split("/").pop() || "index.html";
+  const names = {
+    "index.html": "메인 페이지",
+    "insurance.html": "보험 상담 페이지",
+    "recruit.html": "입사 문의 페이지",
+    "lecture.html": "세일즈 코칭 페이지",
+    "program.html": "프로그램 문의 페이지"
+  };
+  return names[path] || formType || document.title || "현명한 보험";
+}
+
+function legacyFormType(formType) {
+  const path = location.pathname.split("/").pop() || "";
+  if (path === "recruit.html" || formType.includes("입사")) return "recruit";
+  return "consult";
+}
+
 async function submitLead(form) {
   const message = form.querySelector(".form-message");
   const name = form.elements.name?.value.trim() || "";
@@ -92,6 +110,8 @@ async function submitLead(form) {
   const privacy = form.elements.privacy?.checked;
   const formType = form.dataset.formType || "문의";
   const coverage = selectedCoverage();
+  const pageName = currentPageName(formType);
+  const legacyType = legacyFormType(formType);
 
   message.classList.remove("error");
   message.textContent = "";
@@ -104,15 +124,30 @@ async function submitLead(form) {
 
   const payload = {
     createdAt: new Date().toISOString(),
+    timestamp: new Date().toLocaleString("ko-KR"),
     brand: "현명한 보험",
     advisor: "배진우",
-    formType,
+    expert: "배진우",
+    formType: legacyType,
+    requestType: formType,
+    pageName,
+    requestPage: pageName,
+    pageTitle: document.title,
     name,
     phone,
+    type: formType,
+    exp: formType,
+    loc: "",
+    region: "",
+    message: coverage.length ? `선택 보장: ${coverage.join(", ")}` : `${pageName} / ${formType} 신청`,
+    area: "",
+    age: "",
+    memo: coverage.length ? `선택 보장: ${coverage.join(", ")}` : `${formType} 신청`,
     coverage: coverage.join(", "),
     privacyConsent: privacy ? "Y" : "N",
     source: "현명한 보험 개인 브랜딩 홈페이지",
     extra_email: "jw20371035@gmail.com, jinwoo8506@gmail.com, kye1004s7@gmail.com",
+    telegramTitle: `[현명한 보험] ${pageName} 신청`,
     ...utm()
   };
 
@@ -120,8 +155,6 @@ async function submitLead(form) {
     localStorage.setItem("wise-insurance-last-lead", JSON.stringify(payload));
     await fetch(CONFIG.googleAppsScriptUrl, {
       method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
     form.reset();
