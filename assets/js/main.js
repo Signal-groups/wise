@@ -75,6 +75,38 @@ document.querySelectorAll('input[name="phone"]').forEach((input) => {
   });
 });
 
+const submitModal = document.getElementById("submitModal");
+
+function setSubmitModal(state) {
+  if (!submitModal) return;
+  const title = submitModal.querySelector("h3");
+  const desc = submitModal.querySelector("p");
+  submitModal.classList.add("show");
+  submitModal.classList.toggle("done", state === "done");
+  submitModal.setAttribute("aria-hidden", "false");
+  if (state === "loading") {
+    title.textContent = "신청 정보를 전송 중입니다";
+    desc.textContent = "잠시만 기다려 주세요.";
+  } else if (state === "done") {
+    title.textContent = "신청이 완료되었습니다!";
+    desc.textContent = "곧 연락드리겠습니다!";
+  }
+}
+
+function closeSubmitModal() {
+  if (!submitModal) return;
+  submitModal.classList.remove("show", "done");
+  submitModal.setAttribute("aria-hidden", "true");
+}
+
+if (submitModal) {
+  submitModal.addEventListener("click", (event) => {
+    if (event.target === submitModal || event.target.closest("[data-modal-close]")) {
+      closeSubmitModal();
+    }
+  });
+}
+
 function utm() {
   const params = new URLSearchParams(location.search);
   return {
@@ -105,6 +137,7 @@ function legacyFormType(formType) {
 
 async function submitLead(form) {
   const message = form.querySelector(".form-message");
+  const submitButton = form.querySelector('button[type="submit"]');
   const name = form.elements.name?.value.trim() || "";
   const phone = form.elements.phone?.value.trim() || "";
   const privacy = form.elements.privacy?.checked;
@@ -152,6 +185,10 @@ async function submitLead(form) {
   };
 
   try {
+    submitButton.disabled = true;
+    submitButton.dataset.originalText = submitButton.textContent;
+    submitButton.textContent = "전송 중...";
+    setSubmitModal("loading");
     localStorage.setItem("wise-insurance-last-lead", JSON.stringify(payload));
     await fetch(CONFIG.googleAppsScriptUrl, {
       method: "POST",
@@ -159,10 +196,15 @@ async function submitLead(form) {
     });
     form.reset();
     updateCoverageComment();
-    message.textContent = "신청이 접수되었습니다. 확인 후 연락드리겠습니다.";
+    message.textContent = "";
+    setSubmitModal("done");
   } catch (error) {
     message.classList.add("error");
     message.textContent = "접수 중 문제가 발생했습니다. 카카오톡 또는 전화 상담을 이용해 주세요.";
+    closeSubmitModal();
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = submitButton.dataset.originalText || "신청하기";
   }
 }
 
