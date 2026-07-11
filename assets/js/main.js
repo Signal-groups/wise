@@ -11,13 +11,13 @@ if (introLoader) {
   } else {
     document.body.classList.add("intro-active");
     window.addEventListener("load", () => {
-      // 3문구(보험을 넘어 / 금융의 모든 것 / 현명한 보험)가 다 나타난 뒤 0.8초 함께 유지하고
-      // 화면 전체가 자연스럽게 페이드아웃되며 메인 Hero로 전환
+      // 줄1(1.8~2.4s) → 줄2(2.4~3.0s) → 정지(3.0~3.2s) → 줄3 상승(3.2~3.9s)
+      // → 0.5초 정지(3.9~4.4s) → 전체 페이드아웃(0.4s, CSS transition)
       window.setTimeout(() => {
         document.body.classList.remove("intro-active");
         introLoader.classList.add("hide");
         sessionStorage.setItem(introKey, "Y");
-      }, 3850);
+      }, 4400);
     });
   }
 }
